@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Simulador para practicar diagramas de flujo, lógica de programación y C++ básico. Programa ADSO.">
+<title>Laboratorio de lógica y programación ADSO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#inicio" aria-label="Inicio">
+    <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="9" y="2" width="16" height="8" rx="4" fill="var(--sena)"/><path d="M17 10v4" stroke="var(--ink-2)" stroke-width="2"/><path d="M17 14 26 20 17 26 8 20Z" fill="var(--dec-soft)" stroke="var(--dec)" stroke-width="2"/><path d="M17 26v6" stroke="var(--ink-2)" stroke-width="2"/></svg>
+    <span><b>Laboratorio de lógica ADSO</b><span>Diagramas de flujo, lógica y C++</span></span>
+  </a>
+  <nav aria-label="Ruta de aprendizaje">
+    <ol class="steps">
+      <li><a href="#diagramas" data-view="diagramas"><span class="n">1</span><span>Diagramas<span class="lbl-long"> de flujo</span></span></a></li>
+      <li><a href="#tutor" data-view="tutor"><span class="n">2</span><span>Ejercicios<span class="lbl-long"> en chat</span></span></a></li>
+      <li><a href="#cpp" data-view="cpp"><span class="n">3</span><span><span class="lbl-long">Laboratorio </span>C++</span></a></li>
+    </ol>
+  </nav>
+  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<!-- ================= INICIO ================= -->
+<main>
+<section class="view" id="v-inicio">
+  <div class="home">
+    <div class="hero">
+      <div>
+        <h1>Del diagrama de flujo al código que compila</h1>
+        <p>Construye algoritmos con los símbolos del diagrama de flujo, ejecútalos paso a paso viendo cómo cambian las variables, resuelve retos de lógica conversando con el tutor y termina escribiendo, compilando y ejecutando tus primeros programas en C++.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#diagramas">Empezar con diagramas</a>
+          <a class="btn" href="#tutor">Practicar en el chat</a>
+          <a class="btn ghost" href="#cpp">Ir al laboratorio C++</a>
+        </div>
+      </div>
+      <div class="hero-board" aria-label="Ejemplo: el mismo algoritmo como diagrama y como código C++">
+        <div class="cap"><span>¿El número es par o impar?</span><span>diagrama ⇄ C++</span></div>
+        <div class="split">
+          <div class="grid-paper" id="heroSvg"></div>
+          <pre id="heroCode"></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="route">
+      <a href="#diagramas"><span class="k">1</span><h3>Diagramas de flujo</h3><p>Arma el algoritmo con bloques de inicio, entrada, proceso, decisión, ciclos y salida. Ejecútalo con datos reales, valida retos y conviértelo a pseudocódigo o a C++.</p></a>
+      <a href="#tutor"><span class="k">2</span><h3>Ejercicios en chat</h3><p>Un tutor explica la lógica de cada proceso (secuencia, variables, condicionales, ciclos y pruebas de escritorio) y te plantea ejercicios que respondes escribiendo.</p></a>
+      <a href="#cpp"><span class="k">3</span><h3>Laboratorio C++</h3><p>Ejercicio final: escribe sentencias básicas de C++, compílalas con mensajes de error en español, ejecútalas con datos de entrada y valida los retos.</p></a>
+    </div>
+
+    <div class="equiv">
+      <h2>Equivalencias: símbolo, pseudocódigo y C++</h2>
+      <p>Cada estructura del diagrama tiene una traducción directa al pseudocódigo y al lenguaje C++. Esta tabla es la referencia para pasar de una representación a otra.</p>
+      <div class="tbl-wrap">
+        <table class="eq">
+          <thead><tr><th>Símbolo</th><th>Significado</th><th>Pseudocódigo</th><th>C++</th></tr></thead>
+          <tbody id="eqBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="teacher">
+      <div>
+        <h2>Cómo usarlo en la formación</h2>
+        <ul>
+          <li>Inicie con la sección de diagramas: resuelva un reto en conjunto y use la ejecución paso a paso para explicar la prueba de escritorio.</li>
+          <li>Asigne los ejercicios del chat como trabajo autónomo; el panel de progreso muestra el puntaje por tema.</li>
+          <li>Cierre con el laboratorio C++: cada reto trae plantilla, casos de prueba y solución de referencia.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Alcance del simulador</h2>
+        <p>El laboratorio interpreta un subconjunto de C++ pensado para las bases: tipos <code>int</code>, <code>double</code>, <code>char</code>, <code>bool</code> y <code>string</code>; <code>cout</code>, <code>cin</code> y <code>getline</code>; <code>if</code>, <code>switch</code>, <code>while</code>, <code>do-while</code> y <code>for</code>; operadores y funciones de <code>&lt;cmath&gt;</code>. El progreso se guarda en este navegador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIAGRAMAS ================= -->
+<section class="view" id="v-diagramas">
+  <div class="flow">
+    <aside class="side">
+      <div class="sec">
+        <h2>Reto <small id="fRetoState"></small></h2>
+        <select class="reto-sel" id="fRetoSel" aria-label="Seleccionar reto"></select>
+        <div class="reto-box" id="fRetoBox"></div>
+      </div>
+      <div class="sec" style="flex:1">
+        <h2>Bloques del algoritmo <button class="btn small ghost" id="fClear">Vaciar</button></h2>
+        <div class="tree" id="fTree"></div>
+      </div>
+    </aside>
+
+    <div class="canvas-wrap grid-paper" id="fCanvasWrap">
+      <div class="canvas-tools" role="toolbar" aria-label="Zoom del diagrama">
+        <button id="zOut" aria-label="Alejar">−</button><button id="zReset">100%</button><button id="zIn" aria-label="Acercar">+</button>
+      </div>
+      <div class="canvas" id="fCanvas"></div>
+    </div>
+
+    <aside class="side right">
+      <div class="sec">
+        <h2>Ejecución</h2>
+        <div class="ctrl">
+          <button class="btn primary" id="fRun"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Ejecutar</button>
+          <button class="btn" id="fStep">Paso a paso</button>
+          <button class="btn ghost" id="fStop" disabled>Detener</button>
+        </div>
+        <label class="speed">Velocidad <input type="range" id="fSpeed" min="0" max="100" value="55"></label>
+      </div>
+      <div class="sec">
+        <h2>Consola</h2>
+        <div class="console">
+          <div class="out" id="fOut" aria-live="polite"><span class="sys">Pulse “Ejecutar” para correr el diagrama.</span></div>
+          <form id="fInForm"><label id="fInLbl" for="fIn">Dato:</label><input id="fIn" autocomplete="off"><button>Enviar</button></form>
+        </div>
+      </div>
+      <div class="sec">
+        <h2>Variables en memoria</h2>
+        <div id="fVars"><p class="empty">Aún no hay variables.</p></div>
+      </div>
+      <div class="sec">
+        <h2>Validar y convertir</h2>
+        <div class="row-btns">
+          <button class="btn primary" id="fValidate">Validar reto</button>
+          <button class="btn" id="fPseudo">Ver pseudocódigo</button>
+          <button class="btn" id="fToCpp">Llevar a C++</button>
+        </div>
+        <div class="results" id="fResults"></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= TUTOR ================= -->
+<section class="view" id="v-tutor">
+  <div class="tutor">
+    <div class="chat">
+      <div class="msgs" id="cMsgs" aria-live="polite"></div>
+      <div class="chips" id="cChips"></div>
+      <form class="composer" id="cForm">
+        <input id="cIn" autocomplete="off" placeholder="Escribe tu respuesta o un comando (menú, pista, explicar, saltar)" aria-label="Mensaje para el tutor">
+        <button class="btn primary">Enviar</button>
+      </form>
+    </div>
+    <aside class="prog">
+      <h2>Tu progreso</h2>
+      <div class="score" id="cScore">0 <small>puntos</small></div>
+      <div id="cTopics"></div>
+      <div class="cmds">
+        <p><b>Comandos:</b></p>
+        <p><code>menú</code> elegir tema · <code>pista</code> ayuda · <code>explicar</code> ver la solución · <code>saltar</code> siguiente · <code>progreso</code> resumen</p>
+        <button class="btn small ghost" id="cReset">Reiniciar progreso</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= C++ ================= -->
+<section class="view" id="v-cpp">
+  <div class="lab">
+    <aside class="side">
+      <div class="sec">
+        <h2>Retos de C++ <small id="cppDone"></small></h2>
+        <ul class="retos-list" id="cppList"></ul>
+      </div>
+      <div class="sec reto-desc" id="cppDesc"></div>
+      <div class="sec ref">
+        <h2>Referencia rápida</h2>
+        <details><summary>Estructura de un programa</summary><pre>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // instrucciones
+    return 0;
+}</pre></details>
+        <details><summary>Variables y tipos</summary><pre>int edad = 18;        // enteros
+double precio = 9.5;  // decimales
+char letra = 'A';     // un carácter
+bool activo = true;   // verdadero / falso
+string nombre = "Ana";// texto</pre></details>
+        <details><summary>Entrada y salida</summary><pre>cout &lt;&lt; "Hola" &lt;&lt; endl;
+cin &gt;&gt; edad;
+getline(cin, nombre); // línea completa</pre></details>
+        <details><summary>Condicionales</summary><pre>if (nota &gt;= 3.0) {
+    cout &lt;&lt; "Aprobado";
+} else {
+    cout &lt;&lt; "Reprobado";
+}
+
+switch (opcion) {
+    case 1: ... break;
+    default: ...
+}</pre></details>
+        <details><summary>Ciclos</summary><pre>while (i &lt;= 10) { i++; }
+
+do { ... } while (x &gt; 0);
+
+for (int i = 1; i &lt;= 10; i++) { ... }</pre></details>
+        <details><summary>Operadores</summary><pre>+ - * / %      aritméticos
+== != &lt; &gt; &lt;= &gt;=  relacionales
+&amp;&amp; || !         lógicos
++= -= ++ --     asignación</pre></details>
+      </div>
+    </aside>
+
+    <div class="editor-col">
+      <div class="ed-bar">
+        <span class="fname" id="cppFname">main.cpp</span>
+        <button class="btn" id="cppCompile">Compilar</button>
+        <button class="btn primary" id="cppRun"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Compilar y ejecutar</button>
+        <button class="btn ghost" id="cppStop" disabled>Detener</button>
+      </div>
+      <div class="editor">
+        <div class="gutter" id="cppGutter" aria-hidden="true"></div>
+        <div class="ed-area">
+          <pre id="cppHl" aria-hidden="true"></pre>
+          <textarea id="cppEd" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Editor de código C++"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side right">
+      <div class="sec">
+        <h2>Consola</h2>
+        <div class="console">
+          <div class="out" id="cppOut" aria-live="polite"><span class="sys">Pulse “Compilar y ejecutar”. Si el programa usa cin, escriba los datos abajo.</span></div>
+          <form id="cppInForm"><label for="cppIn">Entrada:</label><input id="cppIn" autocomplete="off"><button>Enviar</button></form>
+        </div>
+      </div>
+      <div class="sec">
+        <h2>Validación del reto</h2>
+        <div class="row-btns">
+          <button class="btn primary" id="cppValidate">Validar reto</button>
+          <button class="btn" id="cppReset">Restablecer plantilla</button>
+          <button class="btn ghost" id="cppSol">Ver solución</button>
+        </div>
+        <div class="results" id="cppResults"></div>
+      </div>
+      <div class="sec">
+        <h2>Variables al finalizar</h2>
+        <div id="cppVars"><p class="empty">Se muestran al terminar la ejecución.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<!-- diálogo de bloque -->
+<dialog id="dlg">
+  <form method="dialog" id="dlgForm">
+    <div class="dlg-h"><h3 id="dlgTitle">Agregar bloque</h3><button type="button" class="btn small ghost" data-close>Cerrar</button></div>
+    <div class="dlg-b">
+      <div class="types" id="dlgTypes" role="group" aria-label="Tipo de bloque"></div>
+      <div id="dlgFields"></div>
+      <div class="dlg-err" id="dlgErr" role="alert"></div>
+    </div>
+    <div class="dlg-f"><button type="button" class="btn ghost" data-close>Cancelar</button><button type="submit" class="btn primary" id="dlgSave">Guardar bloque</button></div>
+  </form>
+</dialog>
+<dialog id="codeDlg" class="code-dlg">
+  <div class="dlg-h"><h3 id="codeTitle">Pseudocódigo</h3><button class="btn small ghost" id="codeClose">Cerrar</button></div>
+  <div class="dlg-b"><pre id="codeBody"></pre></div>
+  <div class="dlg-f"><button class="btn" id="codeCopy">Copiar</button><button class="btn primary" id="codeGo" hidden>Abrir en el laboratorio C++</button></div>
+</dialog>
+<script src="js/nucleo.js"></script>
+<script src="js/contenidos.js"></script>
+<script src="js/interfaz.js"></script>
+</body>
+</html>
